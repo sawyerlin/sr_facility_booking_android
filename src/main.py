@@ -11,9 +11,10 @@ from utils import get_strtime, wait_until
 @click.option('--password', '-p', required=False, help='password')
 @click.option('--facility', '-f', required=True, help='facility name, mapping can be found in config')
 @click.option('--day', '-d', required=True, help='day')
+@click.option('--is_next_month', default=False, help='month')
 @click.option('--time', '-t', required=True, help='time')
 @click.option('--time_until', '-tu', default="23:59:58", help='specific time on when the facility booking start')
-def main(username, password, facility, day, time, time_until):
+def main(username: str, password: str, facility: str, day: str, is_next_month: bool, time: str, time_until: str):
     password = password if password else click.prompt('Password', hide_input=True)
     try:
         driver = webdriver.Remote('http://localhost:4723/wd/hub', DESIRED_CAPABILITIES)
@@ -25,7 +26,7 @@ def main(username, password, facility, day, time, time_until):
         wait_until(time_until)
         logging.info(f"{time_until} has been reached")
 
-        book(day, time, driver)
+        book(day, time, facility, is_next_month, driver)
         logging.info(f"choosed facility {day} {time}")
 
         pay(driver)

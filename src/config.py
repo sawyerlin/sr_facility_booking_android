@@ -10,5 +10,11 @@ DESIRED_CAPABILITIES = {
 }
 
 FACILITIY_SCROLL_MAPPING = {
+    'fr': 0,
     'tennis': 4
+}
+
+FACILITIY_NAME_MAPPING = {
+    'fr': 'Function Room',
+    'tennis': 'Tennis Court'
 }

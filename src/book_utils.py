@@ -1,6 +1,6 @@
 from appium.webdriver.common.mobileby import MobileBy
 from utils import click_on, send_key, scoll_down, get_located
-from config import FACILITIY_SCROLL_MAPPING
+from config import FACILITIY_SCROLL_MAPPING, FACILITIY_NAME_MAPPING
 
 def login(username: str, password: str, driver):
     send_key('com.fermax:id/edtEmail', username, driver, MobileBy.ID)
@@ -13,9 +13,12 @@ def locate_facility(facility: str, driver):
     if scroll_times:
         scoll_down(scroll_times, driver)
 
-def book(day: str, time: str, driver):
-    facility_linear_layout = get_located("//android.widget.LinearLayout[.//android.widget.TextView[@text='Tennis Court']]", driver, MobileBy.XPATH)
+def book(day: str, time: str, facility: str, is_next_month: bool, driver):
+    facility_linear_layout = get_located(
+        f"//android.widget.LinearLayout[.//android.widget.TextView[@text='{FACILITIY_NAME_MAPPING[facility]}']]", driver, MobileBy.XPATH)
     click_on("com.fermax:id/btnBook", facility_linear_layout, MobileBy.ID)
+    if is_next_month:
+        click_on("com.fermax:id/calendar_right_arrow", driver, MobileBy.ID)
     click_on(f"//android.widget.TextView[@resource-id='com.fermax:id/tvDate' and @text='{day}']", driver, MobileBy.XPATH)
     click_on(f"//android.widget.TextView[@resource-id='com.fermax:id/tvSlot' and @text='{time}']", driver, MobileBy.XPATH)
 
