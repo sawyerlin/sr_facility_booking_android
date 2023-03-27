@@ -20,7 +20,7 @@ def scoll_down(times: int, driver):
     begin = 0
     while begin < times:
         action = TouchAction(driver)
-        action.press(x=500, y=1500).move_to(x=500, y=0).release().perform()
+        action.press(x=500, y=1200).move_to(x=500, y=0).release().perform()
         begin += 1
 
 def get_strtime(format: str = "%Y-%m-%d_%H-%M-%S"):
@@ -31,4 +31,4 @@ def get_strtime(format: str = "%Y-%m-%d_%H-%M-%S"):
 def wait_until(wait_until: str):
     wait_until_time = datetime.strptime(wait_until, "%H:%M:%S").time()
     while datetime.now().time() < wait_until_time:
-        sleep(1)
+        sleep(1.1) # 1.1 seconds
