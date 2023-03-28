@@ -31,4 +31,4 @@ def get_strtime(format: str = "%Y-%m-%d_%H-%M-%S"):
 def wait_until(wait_until: str):
     wait_until_time = datetime.strptime(wait_until, "%H:%M:%S").time()
     while datetime.now().time() < wait_until_time:
-        sleep(1.1) # 1.1 seconds
+        sleep(0.1)

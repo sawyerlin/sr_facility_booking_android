@@ -7,7 +7,7 @@ DESIRED_CAPABILITIES = {
     'appium:appPackage': 'com.fermax',
     'appium:appActivity': 'com.fermax.activities.SplashActivity',
     'appium:autoGrantPermissions': True,
-    'appium:newCommandTimeout': 600
+    'appium:newCommandTimeout': 600,
 }
 
 FACILITIY_SCROLL_MAPPING = {

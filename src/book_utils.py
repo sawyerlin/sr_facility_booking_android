@@ -20,17 +20,15 @@ def book(day: str, time: str, facility: str, is_next_month: bool, time_until: st
             f"//android.widget.LinearLayout[.//android.widget.TextView[@text='{FACILITIY_NAME_MAPPING[facility]}']]", driver, MobileBy.XPATH)
         click_on("com.fermax:id/btnBook", facility_linear_layout, MobileBy.ID)
         logging.info("clicked on book")
+    click_facility()
 
-    if is_next_month:
-        click_facility()
-        wait_until(time_until)
-        logging.info(f"{time_until} has been reached")
-        click_on("com.fermax:id/calendar_right_arrow", driver, MobileBy.ID)
-        logging.info("next month")
-    else:
-        wait_until(time_until)
-        logging.info(f"{time_until} has been reached")
-        click_facility()
+    wait_until(time_until)
+    logging.info(f"{time_until} has been reached")
+    click_on("com.fermax:id/calendar_right_arrow", driver, MobileBy.ID)
+    logging.info("next month")
+    if not is_next_month:
+        click_on("com.fermax:id/calendar_left_arrow", driver, MobileBy.ID)
+        logging.info("this month")
 
     click_on(f"//android.widget.TextView[@resource-id='com.fermax:id/tvDate' and @text='{day}']", driver, MobileBy.XPATH)
     logging.info(f"selected day {day}")
