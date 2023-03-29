@@ -24,6 +24,7 @@ def book(day: str, time: str, facility: str, is_next_month: bool, time_until: st
 
     wait_until(time_until)
     logging.info(f"{time_until} has been reached")
+
     click_on("com.fermax:id/calendar_right_arrow", driver, MobileBy.ID)
     logging.info("next month")
     if not is_next_month:

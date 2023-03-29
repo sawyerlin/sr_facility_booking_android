@@ -29,6 +29,6 @@ def get_strtime(format: str = "%Y-%m-%d_%H-%M-%S"):
     return current_time
 
 def wait_until(wait_until: str):
-    wait_until_time = datetime.strptime(wait_until, "%H:%M:%S").time()
-    while datetime.now().time() < wait_until_time:
+    wait_until_datetime = datetime.strptime(wait_until, "%Y-%m-%d %H:%M:%S")
+    while datetime.now() < wait_until_datetime:
         sleep(0.1)
